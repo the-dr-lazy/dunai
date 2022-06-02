@@ -1,4 +1,3 @@
-{-# LANGUAGE CPP #-}
 -- |
 -- Copyright  : (c) Ivan Perez and Manuel Baerenz, 2016
 -- License    : BSD3
@@ -25,11 +24,12 @@ module Control.Monad.Trans.MSF.List
   where
 
 -- External imports
-#if !MIN_VERSION_base(4,8,0)
-import Control.Applicative ((<$>))
-#endif
-
+import Control.Monad            (Monad, mapM, return, sequence)
 import Control.Monad.Trans.List hiding (liftCallCC, liftCatch)
+import Data.Function            (flip, ($), (.))
+import Data.Functor             (Functor, (<$>))
+import Data.List                (concat, unzip)
+import Prelude                  (seq)
 
 -- Internal imports
 import Data.MonadicStreamFunction.InternalCore (MSF (MSF, unMSF))

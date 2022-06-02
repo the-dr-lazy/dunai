@@ -36,6 +36,7 @@ module Data.MonadicStreamFunction.Instances.VectorSpace where
 
 -- External imports
 import Control.Arrow    ((>>^))
+import Control.Monad    (Monad)
 import Data.VectorSpace (VectorSpace (..))
 
 -- Internal imports
