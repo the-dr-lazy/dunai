@@ -542,18 +542,18 @@ loopPre = feedback
 
 -- * Integration and differentiation
 
-integral :: (Monad m, VectorSpace a s) => SF m a a
+integral :: (Fractional s, Monad m, VectorSpace a s) => SF m a a
 integral = integralFrom zeroVector
 
-integralFrom :: (Monad m, VectorSpace a s) => a -> SF m a a
+integralFrom :: (Fractional s, Monad m, VectorSpace a s) => a -> SF m a a
 integralFrom a0 = proc a -> do
   dt <- constM ask         -< ()
   accumulateWith (^+^) a0 -< realToFrac dt *^ a
 
-derivative :: (Monad m, VectorSpace a s) => SF m a a
+derivative :: (Fractional s, Monad m, VectorSpace a s) => SF m a a
 derivative = derivativeFrom zeroVector
 
-derivativeFrom :: (Monad m, VectorSpace a s) => a -> SF m a a
+derivativeFrom :: (Fractional s, Monad m, VectorSpace a s) => a -> SF m a a
 derivativeFrom a0 = proc a -> do
   dt   <- constM ask   -< ()
   aOld <- MSF.iPre a0 -< a
